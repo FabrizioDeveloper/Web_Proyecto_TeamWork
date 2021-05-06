@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+
+<html 	
+	xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+		
+<ui:composition template="master.xhtml"> 
+	
+	<ui:define name="title">
+		.:Listado de Clientes:.
+	</ui:define>
+	
+	<ui:define name="titleCont">
+		<span>Clientes</span>
+	</ui:define>
+	
+	<ui:define name="content">
+		<h:form>
+		
+			<div class="row">
+				<div class="col-sm-8 text-right">
+					<div class="form-group box-main-btn">
+						<span style="display: block; height:30px;"></span>
+						<p:commandButton value="Nuevo"						
+							action="#{clienteController.nuevoCliente()}"
+							styleClass="btn btn-primary ajax=false" />
+					</div>
+				</div>
+			</div>
+
+			<div class="row">
+				<div class="col-sm-12">
+					<div class="form-group table-responsive box-table-class">
+						<p:dataTable id="lstCliente" var="cli"
+							value="#{clienteController.listaClientes}" paginator="true"
+							paginatorPosition="top" rowsPerPageTemplate="10,20,30,40,50"
+							rows="10" styleClass="table table-bordered"
+							emptyMessage="NO EXISTEN CLIENTES" rowIndexVar="item"
+							style="margin-bottom:0">
+
+							<p:column headerText="Id Usuario" sortBy="#{cli.idUsuario}">
+								<h:outputText value="#{cli.idUsuario}" />
+							</p:column>
+							
+							<p:column headerText="Id Cliente" sortBy="#{cli.idCliente}">
+								<h:outputText value="#{cli.idCliente}" />
+							</p:column>
+
+							<p:column headerText="Cuenta Usuario" sortBy="#{cli.cuentaUsuario}">
+								<h:outputText value="#{cli.cuentaUsuario}" />
+							</p:column>
+							
+							<p:column headerText="Nombres del Cliente" sortBy="#{cli.nombresUsuario}">
+								<h:outputText value="#{cli.nombresUsuario}" />
+							</p:column>
+							
+							<p:column headerText="Apellidos del Cliente" sortBy="#{cli.apellidosUsuario}">
+								<h:outputText value="#{cli.apellidosUsuario}" />
+							</p:column>
+							
+							<p:column headerText="Email" sortBy="#{cli.correoUsuario}">
+								<h:outputText value="#{cli.correoUsuario}" />
+							</p:column>
+							
+							<p:column headerText="Sexo" sortBy="#{cli.sexo}">
+								<h:outputText value="#{cli.sexo}" />
+							</p:column>
+							
+							<p:column headerText="Bonificacion" sortBy="#{cli.bonificacion}">
+								<h:outputText value="#{cli.bonificacion}" />
+							</p:column>
+
+						</p:dataTable>
+					</div>
+				</div>				
+			</div>									
+		</h:form>
+	</ui:define>
+	
+	<ui:define name="footerCont">
+	</ui:define>
+		
+</ui:composition> 
+</html>
+ 

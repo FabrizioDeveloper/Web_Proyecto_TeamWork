@@ -1,0 +1,135 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:ui="http://java.sun.com/jsf/facelets">
+
+<ui:composition template="master.xhtml">
+
+	<ui:define name="title">
+        .:Registro de Trabajadores:.
+    </ui:define>
+
+	<ui:define name="titleCont">
+		<span>Trabajador</span>
+	</ui:define>
+
+	<ui:define name="content">
+		<h:form>
+			
+			<h:outputLabel for="idTrabajador" value="Id " styleClass="control-label" />
+
+			<p:inputText autocomplete="off" id="idTrabajador"
+				styleClass="form-control" value="#{trabajadorController.trabajador.idTrabajador}"
+				required="true" />
+			
+			<h:outputLabel for="cuentaUsuario" value="Nombre de la cuenta "
+				styleClass="control-label" />
+
+			<p:inputText autocomplete="off" id="cuentaUsuario"
+				styleClass="form-control"
+				value="#{trabajadorController.trabajador.cuentaUsuario}" maxlength="30"
+				required="true" />
+				
+			<h:outputLabel for="nombresUsuario" value="Nombres Completos "
+				styleClass="control-label" />
+
+			<p:inputText autocomplete="off" id="nombresUsuario"
+				styleClass="form-control"
+				value="#{trabajadorController.trabajador.nombresUsuario}" maxlength="30"
+				required="true" />
+				
+			<h:outputLabel for="apellidosUsuario" value="Apellidos Completos "
+				styleClass="control-label" />
+
+			<p:inputText autocomplete="off" id="apellidosUsuario"
+				styleClass="form-control"
+				value="#{trabajadorController.trabajador.apellidosUsuario}" maxlength="30"
+				required="true" />
+				
+			<h:outputLabel for="correoUsuario" value="Email "
+				styleClass="control-label" />
+
+			<p:inputText autocomplete="off" id="correoUsuario"
+				styleClass="form-control"
+				value="#{trabajadorController.trabajador.correoUsuario}" maxlength="30"
+				required="true" />			
+
+			<h:outputLabel for="nacimientoUsuario" value="Fecha de Nacimiento "
+				styleClass="control-label" />
+
+			<p:calendar id="nacimientoUsuario" pattern="dd/MM/yyyy"
+				value="#{trabajadorController.trabajador.nacimientoUsuario}" showOn="button"
+				timeZone="UTC" required="true">
+			</p:calendar>
+			
+			<h:outputLabel for="sexo" value="Sexo "
+				styleClass="control-label" />
+
+			<p:inputText autocomplete="off" id="sexo"
+				styleClass="form-control"
+				value="#{trabajadorController.trabajador.sexo}" maxlength="30"
+				required="true" />
+				
+			<h:outputLabel for="telefono" value="Telefono "
+				styleClass="control-label" />
+
+			<p:inputText autocomplete="off" id="telefono"
+				styleClass="form-control"
+				value="#{trabajadorController.trabajador.telefono}" maxlength="30"
+				required="true" />
+				
+			<h:outputLabel for="claveUsuario" value="Contrasenia "
+				styleClass="control-label" />
+
+			<p:inputText autocomplete="off" id="claveUsuario"
+				styleClass="form-control"
+				value="#{trabajadorController.trabajador.claveUsuario}" maxlength="30"
+				required="true" />
+				
+			<h:outputLabel for="idDistrito" value="Distrito "
+				styleClass="control-label" />
+
+			<p:inputText autocomplete="off" id="idDistrito"
+				styleClass="form-control"
+				value="#{trabajadorController.usuario.distrito.nombreDistrito}" maxlength="30"
+				required="true" />
+				
+			<h:outputLabel for="ruc" value="RUC "
+				styleClass="control-label" />
+
+			<p:inputText autocomplete="off" id="ruc"
+				styleClass="form-control"
+				value="#{trabajadorController.trabajador.ruc}" maxlength="30"
+				required="true" />
+				
+			<h:outputLabel for="descripcionTrabajador" value="Describete "
+				styleClass="control-label" />
+
+			<p:inputText autocomplete="off" id="descripcionTrabajador"
+				styleClass="form-control"
+				value="#{trabajadorController.trabajador.descripcionTrabajador}" maxlength="50"
+				required="true" />
+			
+			<br />
+
+			<p:commandButton value="Grabar"
+				actionListener="#{trabajadorController.insertar()}"
+				styleClass="btn btn-primary " update="@form"
+				action="listTrabajador?faces-redirect=true" />
+			<p:commandButton value="Cancelar"
+				action="listTrabajador?faces-redirect=true" immediate="true"
+				styleClass="btn btn-default" ajax="false" />
+
+			<p:growl id="growl" sticky="true" showDetail="true" life="3000" />
+
+		</h:form>
+	</ui:define>
+
+	<ui:define name="footerCont">
+
+	</ui:define>
+</ui:composition>
+</html>
+

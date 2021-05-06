@@ -40,6 +40,5 @@ public class ClienteDaoImpl implements IClienteDao, Serializable{
 		cliente = em.getReference(Cliente.class, idCliente);
 		em.remove(cliente);
 	}
-	
 
 }

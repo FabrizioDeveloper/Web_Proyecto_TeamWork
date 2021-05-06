@@ -9,77 +9,77 @@ import javax.enterprise.context.RequestScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
 
+import pe.edu.upc.entity.Distrito;
 import pe.edu.upc.entity.Usuario;
-import pe.edu.upc.entity.Cliente;
 
+import pe.edu.upc.service.IDistritoService;
 import pe.edu.upc.service.IUsuarioService;
-import pe.edu.upc.service.IClienteService;
 
 @Named
 @RequestScoped
 
-public class ClienteController implements Serializable{
+public class UsuarioController implements Serializable{
 
 	private static final long serialVersionUID = 1L;
 	
 	@Inject
-	private IClienteService cService;
+	private IDistritoService dService;
 	
 	@Inject
 	private IUsuarioService uService;
 	
-	private Cliente cliente;
+	private Distrito distrito;
 	private Usuario usuario;
 	
-	List<Cliente> listaClientes;
+	List<Distrito> listaDistritos;
 	List<Usuario> listaUsuarios;
 	
 	@PostConstruct
 	public void init() {
-		cliente = new Cliente();
-		usuario = new Usuario();
+		distrito = new Distrito();
+		usuario= new Usuario();
 		
-		listaClientes = new ArrayList<Cliente>();
+		listaDistritos = new ArrayList<Distrito>();
 		listaUsuarios = new ArrayList<Usuario>();
 		
-		this.listCliente();
+		this.listDistrito();
 		this.listUsuario();
 	}
 	
-	public String nuevoCliente() {
-		this.setCliente(new Cliente());
-		return "cliente.xhtml";
+	public String nuevoUsuario() {
+		this.setUsuario(new Usuario());
+		return "usuario.xhtml";
 	}
 	
 	public void insertar() {
-		cService.insertar(cliente);
-		limpiarCliente();
-		this.listCliente();
+		uService.insertar(usuario);
+		limpiarUsuario();
+		this.listUsuario();
 	}
 	
-	public void listCliente() {
-		listaClientes = cService.listar();
+	public void listDistrito() {
+		listaDistritos = dService.listar();
 	}
 	
 	public void listUsuario() {
 		listaUsuarios = uService.listar();
 	}
 	
-	public void limpiarCliente() {
+	public void limpiarUsuario() {
 		this.init();
 	}
 	
-	public void eliminar(Cliente cliente) {
-		cService.eliminar(cliente.getIdCliente());
-		this.listCliente();
+	public void eliminar(Usuario usuario) {
+		uService.eliminar(usuario.getIdUsuario());
+		this.listUsuario();
 	}
 
-	public Cliente getCliente() {
-		return cliente;
+	public Distrito getDistrito() {
+		return distrito;
 	}
 
-	public void setCliente(Cliente cliente) {
-		this.cliente = cliente;
+	public void setDistrito(Distrito distrito) {
+		this.distrito = distrito;
 	}
 
 	public Usuario getUsuario() {
@@ -90,12 +90,12 @@ public class ClienteController implements Serializable{
 		this.usuario = usuario;
 	}
 
-	public List<Cliente> getListaClientes() {
-		return listaClientes;
+	public List<Distrito> getListaDistritos() {
+		return listaDistritos;
 	}
 
-	public void setListaClientes(List<Cliente> listaClientes) {
-		this.listaClientes = listaClientes;
+	public void setListaDistritos(List<Distrito> listaDistritos) {
+		this.listaDistritos = listaDistritos;
 	}
 
 	public List<Usuario> getListaUsuarios() {

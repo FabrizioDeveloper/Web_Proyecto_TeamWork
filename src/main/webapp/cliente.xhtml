@@ -1,0 +1,119 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:ui="http://java.sun.com/jsf/facelets">
+
+<ui:composition template="master.xhtml">
+
+	<ui:define name="title">
+        .:Registro de Clientes:.
+    </ui:define>
+
+	<ui:define name="titleCont">
+		<span>Cliente</span>
+	</ui:define>
+
+	<ui:define name="content">
+		<h:form>
+			
+			<h:outputLabel for="idCliente" value="Id " styleClass="control-label" />
+
+			<p:inputText autocomplete="off" id="idCliente"
+				styleClass="form-control" value="#{clienteController.cliente.idCliente}"
+				required="true" />
+			
+			<h:outputLabel for="cuentaUsuario" value="Nombre de la cuenta "
+				styleClass="control-label" />
+
+			<p:inputText autocomplete="off" id="cuentaUsuario"
+				styleClass="form-control"
+				value="#{clienteController.cliente.cuentaUsuario}" maxlength="30"
+				required="true" />
+				
+			<h:outputLabel for="nombresUsuario" value="Nombres Completos "
+				styleClass="control-label" />
+
+			<p:inputText autocomplete="off" id="nombresUsuario"
+				styleClass="form-control"
+				value="#{clienteController.cliente.nombresUsuario}" maxlength="30"
+				required="true" />
+				
+			<h:outputLabel for="apellidosUsuario" value="Apellidos Completos "
+				styleClass="control-label" />
+
+			<p:inputText autocomplete="off" id="apellidosUsuario"
+				styleClass="form-control"
+				value="#{clienteController.cliente.apellidosUsuario}" maxlength="30"
+				required="true" />
+				
+			<h:outputLabel for="correoUsuario" value="Email "
+				styleClass="control-label" />
+
+			<p:inputText autocomplete="off" id="correoUsuario"
+				styleClass="form-control"
+				value="#{clienteController.cliente.correoUsuario}" maxlength="30"
+				required="true" />			
+
+			<h:outputLabel for="nacimientoUsuario" value="Fecha de Nacimiento "
+				styleClass="control-label" />
+
+			<p:calendar id="nacimientoUsuario" pattern="dd/MM/yyyy"
+				value="#{clienteController.cliente.nacimientoUsuario}" showOn="button"
+				timeZone="UTC" required="true">
+			</p:calendar>
+			
+			<h:outputLabel for="sexo" value="Sexo "
+				styleClass="control-label" />
+
+			<p:inputText autocomplete="off" id="sexo"
+				styleClass="form-control"
+				value="#{clienteController.cliente.sexo}" maxlength="30"
+				required="true" />
+				
+			<h:outputLabel for="telefono" value="Telefono "
+				styleClass="control-label" />
+
+			<p:inputText autocomplete="off" id="telefono"
+				styleClass="form-control"
+				value="#{clienteController.cliente.telefono}" maxlength="30"
+				required="true" />
+				
+			<h:outputLabel for="claveUsuario" value="Contrasenia "
+				styleClass="control-label" />
+
+			<p:inputText autocomplete="off" id="claveUsuario"
+				styleClass="form-control"
+				value="#{clienteController.cliente.claveUsuario}" maxlength="30"
+				required="true" />
+				
+			<h:outputLabel for="idDistrito" value="Distrito "
+				styleClass="control-label" />
+
+			<p:inputText autocomplete="off" id="idDistrito"
+				styleClass="form-control"
+				value="#{clienteController.usuario.distrito.nombreDistrito}" maxlength="30"
+				required="true" />	
+			
+			<br />
+
+			<p:commandButton value="Grabar"
+				actionListener="#{clienteController.insertar()}"
+				styleClass="btn btn-primary " update="@form"
+				action="listCliente?faces-redirect=true" />
+			<p:commandButton value="Cancelar"
+				action="listCliente?faces-redirect=true" immediate="true"
+				styleClass="btn btn-default" ajax="false" />
+
+			<p:growl id="growl" sticky="true" showDetail="true" life="3000" />
+
+		</h:form>
+	</ui:define>
+
+	<ui:define name="footerCont">
+
+	</ui:define>
+</ui:composition>
+</html>
+

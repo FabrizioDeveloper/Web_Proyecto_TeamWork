@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+
+<html 	
+	xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+		
+<ui:composition template="master.xhtml"> 
+	
+	<ui:define name="title">
+		.:Listado de Trabajadores:.
+	</ui:define>
+	
+	<ui:define name="titleCont">
+		<span>Trabajadores</span>
+	</ui:define>
+	
+	<ui:define name="content">
+		<h:form>
+		
+			<div class="row">
+				<div class="col-sm-8 text-right">
+					<div class="form-group box-main-btn">
+						<span style="display: block; height:30px;"></span>
+						<p:commandButton value="Nuevo"						
+							action="#{trabajadorController.nuevoTrabajador()}"
+							styleClass="btn btn-primary ajax=false" />
+					</div>
+				</div>
+			</div>
+
+			<div class="row">
+				<div class="col-sm-12">
+					<div class="form-group table-responsive box-table-class">
+						<p:dataTable id="lstTrabajador" var="tra"
+							value="#{trabajadorController.listaTrabajadores}" paginator="true"
+							paginatorPosition="top" rowsPerPageTemplate="10,20,30,40,50"
+							rows="10" styleClass="table table-bordered"
+							emptyMessage="NO EXISTEN TRABAJADORES" rowIndexVar="item"
+							style="margin-bottom:0">
+
+							<p:column headerText="Id Usuario" sortBy="#{tra.idUsuario}">
+								<h:outputText value="#{cli.idUsuario}" />
+							</p:column>
+							
+							<p:column headerText="Id Trabajador" sortBy="#{tra.idTrabajador}">
+								<h:outputText value="#{tra.idTrabajador}" />
+							</p:column>
+
+							<p:column headerText="Cuenta Usuario" sortBy="#{tra.cuentaUsuario}">
+								<h:outputText value="#{tra.cuentaUsuario}" />
+							</p:column>
+							
+							<p:column headerText="Nombres del Trabajador" sortBy="#{tra.nombresUsuario}">
+								<h:outputText value="#{tra.nombresUsuario}" />
+							</p:column>
+							
+							<p:column headerText="Apellidos del Trabajador" sortBy="#{tra.apellidosUsuario}">
+								<h:outputText value="#{tra.apellidosUsuario}" />
+							</p:column>
+							
+							<p:column headerText="Email" sortBy="#{tra.correoUsuario}">
+								<h:outputText value="#{tra.correoUsuario}" />
+							</p:column>
+							
+							<p:column headerText="Sexo" sortBy="#{tra.sexo}">
+								<h:outputText value="#{tra.sexo}" />
+							</p:column>
+							
+							<p:column headerText="RUC" sortBy="#{tra.ruc}">
+								<h:outputText value="#{tra.ruc}" />
+							</p:column>
+							
+							<p:column headerText="Descripcion" sortBy="#{tra.descripcionTrabajador}">
+								<h:outputText value="#{tra.descripcionTrabajador}" />
+							</p:column>
+
+						</p:dataTable>
+					</div>
+				</div>				
+			</div>									
+		</h:form>
+	</ui:define>
+	
+	<ui:define name="footerCont">
+	</ui:define>
+		
+</ui:composition> 
+</html>
+ 

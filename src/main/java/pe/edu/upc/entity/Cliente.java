@@ -3,16 +3,17 @@ package pe.edu.upc.entity;
 import java.io.Serializable;
 import java.util.Date;
 
-import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 @Entity
 @Table(name="cliente")
-public class Cliente implements Serializable{
+public class Cliente extends Usuario implements Serializable{
 
 	private static final long serialVersionUID = 1L;
 	
@@ -20,30 +21,28 @@ public class Cliente implements Serializable{
 	@GeneratedValue(strategy= GenerationType.IDENTITY)
 	private int idCliente;
 	
-	@Column(name="emailCliente", nullable=false, length=45)
-	private String correoCliente;
+	@OneToOne
+	@JoinColumn(name = "idUsuario", nullable= false)
+	private Usuario usuario;
 	
-	@Column(name="namesCliente", nullable=false, length=40)
-	private String nombresCliente;
-	
-	@Column(name="passwordCliente", nullable=false, length=40)
-	private String contraseñaCliente;
-	
-	private Date fechaCliente;
+	private int bonificacion;
 
 	public Cliente() {
 		super();
-		// TODO Auto-generated constructor stub
 	}
 
-	public Cliente(int idCliente, String correoCliente, String nombresCliente, String contraseñaCliente,
-			Date fechaCliente) {
+	public Cliente(int idUsuario, String cuentaUsuario, String nombresUsuario, String apellidosUsuario,
+			String correoUsuario, Date nacimientoUsuario, String sexo, String telefono, String claveUsuario,
+			Distrito distrito) {
+		super(idUsuario, cuentaUsuario, nombresUsuario, apellidosUsuario, correoUsuario, nacimientoUsuario, sexo, telefono,
+				claveUsuario, distrito);
+	}
+
+	public Cliente(int idCliente, Usuario usuario, int bonificacion) {
 		super();
 		this.idCliente = idCliente;
-		this.correoCliente = correoCliente;
-		this.nombresCliente = nombresCliente;
-		this.contraseñaCliente = contraseñaCliente;
-		this.fechaCliente = fechaCliente;
+		this.usuario = usuario;
+		this.bonificacion = bonificacion;
 	}
 
 	public int getIdCliente() {
@@ -54,36 +53,20 @@ public class Cliente implements Serializable{
 		this.idCliente = idCliente;
 	}
 
-	public String getCorreoCliente() {
-		return correoCliente;
+	public Usuario getUsuario() {
+		return usuario;
 	}
 
-	public void setCorreoCliente(String correoCliente) {
-		this.correoCliente = correoCliente;
+	public void setUsuario(Usuario usuario) {
+		this.usuario = usuario;
 	}
 
-	public String getNombresCliente() {
-		return nombresCliente;
+	public int getBonificacion() {
+		return bonificacion;
 	}
 
-	public void setNombresCliente(String nombresCliente) {
-		this.nombresCliente = nombresCliente;
-	}
-
-	public String getContraseñaCliente() {
-		return contraseñaCliente;
-	}
-
-	public void setContraseñaCliente(String contraseñaCliente) {
-		this.contraseñaCliente = contraseñaCliente;
-	}
-
-	public Date getFechaCliente() {
-		return fechaCliente;
-	}
-
-	public void setFechaCliente(Date fechaCliente) {
-		this.fechaCliente = fechaCliente;
+	public void setBonificacion(int bonificacion) {
+		this.bonificacion = bonificacion;
 	}
 	
 }

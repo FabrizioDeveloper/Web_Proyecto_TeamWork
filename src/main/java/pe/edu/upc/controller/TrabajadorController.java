@@ -10,76 +10,76 @@ import javax.inject.Inject;
 import javax.inject.Named;
 
 import pe.edu.upc.entity.Usuario;
-import pe.edu.upc.entity.Cliente;
+import pe.edu.upc.entity.Trabajador;
 
 import pe.edu.upc.service.IUsuarioService;
-import pe.edu.upc.service.IClienteService;
+import pe.edu.upc.service.ITrabajadorService;
 
 @Named
 @RequestScoped
 
-public class ClienteController implements Serializable{
+public class TrabajadorController implements Serializable{
 
 	private static final long serialVersionUID = 1L;
 	
 	@Inject
-	private IClienteService cService;
+	private ITrabajadorService tService;
 	
 	@Inject
 	private IUsuarioService uService;
 	
-	private Cliente cliente;
+	private Trabajador trabajador;
 	private Usuario usuario;
 	
-	List<Cliente> listaClientes;
+	List<Trabajador> listaTrabajadores;
 	List<Usuario> listaUsuarios;
 	
 	@PostConstruct
 	public void init() {
-		cliente = new Cliente();
+		trabajador = new Trabajador();
 		usuario = new Usuario();
 		
-		listaClientes = new ArrayList<Cliente>();
+		listaTrabajadores = new ArrayList<Trabajador>();
 		listaUsuarios = new ArrayList<Usuario>();
 		
-		this.listCliente();
+		this.listTrabajador();
 		this.listUsuario();
 	}
 	
-	public String nuevoCliente() {
-		this.setCliente(new Cliente());
-		return "cliente.xhtml";
+	public String nuevoTrabajador() {
+		this.setTrabajador(new Trabajador());
+		return "trabajador.xhtml";
 	}
 	
 	public void insertar() {
-		cService.insertar(cliente);
-		limpiarCliente();
-		this.listCliente();
+		tService.insertar(trabajador);
+		limpiarTrabajador();
+		this.listTrabajador();
 	}
 	
-	public void listCliente() {
-		listaClientes = cService.listar();
+	public void listTrabajador() {
+		listaTrabajadores = tService.listar();
 	}
 	
 	public void listUsuario() {
 		listaUsuarios = uService.listar();
 	}
 	
-	public void limpiarCliente() {
+	public void limpiarTrabajador() {
 		this.init();
 	}
 	
-	public void eliminar(Cliente cliente) {
-		cService.eliminar(cliente.getIdCliente());
-		this.listCliente();
+	public void eliminar(Trabajador trabajador) {
+		tService.eliminar(trabajador.getIdTrabajador());
+		this.listTrabajador();
 	}
 
-	public Cliente getCliente() {
-		return cliente;
+	public Trabajador getTrabajador() {
+		return trabajador;
 	}
 
-	public void setCliente(Cliente cliente) {
-		this.cliente = cliente;
+	public void setTrabajador(Trabajador trabajador) {
+		this.trabajador = trabajador;
 	}
 
 	public Usuario getUsuario() {
@@ -90,12 +90,12 @@ public class ClienteController implements Serializable{
 		this.usuario = usuario;
 	}
 
-	public List<Cliente> getListaClientes() {
-		return listaClientes;
+	public List<Trabajador> getListaTrabajadores() {
+		return listaTrabajadores;
 	}
 
-	public void setListaClientes(List<Cliente> listaClientes) {
-		this.listaClientes = listaClientes;
+	public void setListaTrabajadores(List<Trabajador> listaTrabajadores) {
+		this.listaTrabajadores = listaTrabajadores;
 	}
 
 	public List<Usuario> getListaUsuarios() {
